@@ -84,61 +84,10 @@ class Autocomplete extends React.Component {
   }
   
   /* test data */
-  const suggestions ={
-      'a':'A',
-      'b':'B',
-      'c':'C',
-      'd':'D',
-      'e':'E',
-      'f':'F',
-      'g':'G'
-  };
-
-  renderSuggestions () {
-    /* This method returns a <ul> with <li> elements inside it for each 'suggestion' that remains unselected */
-    /* */
-    const {className, disabled, inline, name, label, dropdown} = this.props;
-    const cx = classNames.bind(style);
-
-
-    /* Classnames for the ul */
-    let dropDownItemClass = cx({
-      focus: this.state.focus,
-      dropdown: true
-    });
-
-    /* Classnames for the li */
-    let liItemClass = cx({
-      liItem: true
-    });
-
-    /* render of li of suggestions */
-    const suggestionList = [this.suggestions].map((key, value) => {
-      console.log("key", key);
-      console.log("value", value);
-
-      let liClassName = cx({
-
-      });
-      return (
-        <li className={liClassName}>
-          {value}
-        </li>
-      );
-    })
-
-    /* render of ul containing each li element */
-    return(
-
-        <ul className={dropDownItemClass}>
-          {suggestionList}
-        </ul>
-    );
-  }
 
   render () {
 
-    const {className, disabled, inline, name, label} = this.props;
+    const {className, disabled, inline, name, label, ...props} = this.props;
     const cx = classNames.bind(style);
 
     let inputClassName = cx({
@@ -150,7 +99,7 @@ class Autocomplete extends React.Component {
       <div className={className}>
         <Input
           ref="input"
-          {...this.props}
+          {...props}
           className={inputClassName}
           onBlur={this.handleQueryBlur}
           onChange={this.handleQueryChange}
@@ -158,10 +107,43 @@ class Autocomplete extends React.Component {
           onKeyUp={this.handleQueryKeyUp}
           value={this.state.query}
         />
-        {this.renderSuggestions()}
+        <Suggestions focus={this.state.focus} suggestions={this.source}/>
       </div>
     );
   }
 }
 
+
+
+const Suggestions = ({focus, suggestions}) => {
+  /* This method returns a <ul> with <li> elements inside it for each 'suggestion' that remains unselected */
+  /* */
+  const cx = classNames.bind(style);
+
+  /* Classnames for the ul */
+  let dropDownItemClass = cx({
+    focus: focus,
+    dropdown: true
+  });
+
+  let liItemClass = cx({
+      liItem: true
+    });
+
+  /* render of ul containing each li element */
+  return(
+      <ul className={dropDownItemClass} >
+        {suggestions.map((key, value) => {
+          return (
+            <li className={liClassName}>
+              {value}
+            </li>
+          );
+        })}
+      </ul>
+  );
+}
+
+
 export default Autocomplete;
+export Suggestions;

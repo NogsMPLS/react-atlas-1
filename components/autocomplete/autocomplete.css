@@ -1,0 +1,58 @@
+.root{
+	display: none;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: none;
+}
+
+.focus{
+	display: block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdownContent {
+	display:none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdownItem {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdownContent span:hover {
+	background-color: #f1f1f1
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+	display:block;
+}
+
+/* ul class */
+
+/* li item class*/
+.liItem{
+
+}
+/* li on hover*/
+.liItem:hover{
+	background: blue
+}
+
+.disabled{
+  composes: decoration-none from '../styles.css';
+  cursor: not-allowed;
+  opacity: .65;
+  pointer-events: none;
+  
+}
