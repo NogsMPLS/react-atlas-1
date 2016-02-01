@@ -11,19 +11,17 @@ const defaultProps = {
   className: ''
 };
 
-const RadioGroup = ({className, children, name, ...props}) => {
-  return (
-      <div {...props} className={className}>
-        {React.Children.map(children, (child) => {
-          if (child.type === Radio) {
-            return <Radio {...child.props} name={name}/>
-          } else {
-            return child
-          }
-        })}
-      </div>
-  )
-};
+const RadioGroup = ({className, children, name, ...props}) => (
+    <div {...props} className={className}>
+      {React.Children.map(children, (child) => {
+        if (child.type === Radio) {
+          return <Radio {...child.props} name={name}/>
+        } else {
+          return child
+        }
+      })}
+    </div>
+);
 
 RadioGroup.propTypes = propTypes;
 RadioGroup.defaultProps = defaultProps;

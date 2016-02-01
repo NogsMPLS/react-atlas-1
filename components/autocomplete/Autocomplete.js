@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import classNames from "classnames/bind";
 import Input from "../input";
+import Suggestions from "./Suggestions";
 import style from "./autocomplete.css";
 
 const propTypes = {
@@ -24,8 +25,7 @@ const propTypes = {
 const defaultProps = {
   className: '',
   disabled: false,
-  focus: false,
-  source: {}
+  focus: false
 };
 
 class Autocomplete extends React.Component {
@@ -34,11 +34,10 @@ class Autocomplete extends React.Component {
     super(props)
     this.state = {
       direction: this.props.direction,
-      focus: false,
+      focus: false
+
       /* non-selected values of the componet*/
-      query: this.query(this.props.value)
     }
-    console.log("This state's focus: ", focus)
   };
 /* if the state of this isn't focused, and it has a focus in it's next state, and direction is AUTO,
   calculate direction */
@@ -63,7 +62,7 @@ class Autocomplete extends React.Component {
 
   /* On focus, set .focus to show*/
   handleQueryFocus = () => {
-    {console.log("FOCUSED ON INPUT", this.state.focus)}
+    {console.log("source value: ", this.props.source)}
     this.setState({focus: true});
   };
 
@@ -72,73 +71,19 @@ class Autocomplete extends React.Component {
   };
 
   handleSuggestionHover = (key) => {
+
   };
 
   /* if set to auto, determine if the direction should be up or down.*/
   calculateDirection () {
-  }
-
-  /* handles the query */
-  query () {
 
   }
   
   /* test data */
-  const suggestions ={
-      'a':'A',
-      'b':'B',
-      'c':'C',
-      'd':'D',
-      'e':'E',
-      'f':'F',
-      'g':'G'
-  };
-
-  renderSuggestions () {
-    /* This method returns a <ul> with <li> elements inside it for each 'suggestion' that remains unselected */
-    /* */
-    const {className, disabled, inline, name, label, dropdown} = this.props;
-    const cx = classNames.bind(style);
-
-
-    /* Classnames for the ul */
-    let dropDownItemClass = cx({
-      focus: this.state.focus,
-      dropdown: true
-    });
-
-    /* Classnames for the li */
-    let liItemClass = cx({
-      liItem: true
-    });
-
-    /* render of li of suggestions */
-    const suggestionList = [this.suggestions].map((key, value) => {
-      console.log("key", key);
-      console.log("value", value);
-
-      let liClassName = cx({
-
-      });
-      return (
-        <li className={liClassName}>
-          {value}
-        </li>
-      );
-    })
-
-    /* render of ul containing each li element */
-    return(
-
-        <ul className={dropDownItemClass}>
-          {suggestionList}
-        </ul>
-    );
-  }
 
   render () {
 
-    const {className, disabled, inline, name, label} = this.props;
+    const {className, disabled, inline, name, label, ...props} = this.props;
     const cx = classNames.bind(style);
 
     let inputClassName = cx({
@@ -150,15 +95,14 @@ class Autocomplete extends React.Component {
       <div className={className}>
         <Input
           ref="input"
-          {...this.props}
+          {...props}
           className={inputClassName}
           onBlur={this.handleQueryBlur}
           onChange={this.handleQueryChange}
           onFocus={this.handleQueryFocus}
           onKeyUp={this.handleQueryKeyUp}
-          value={this.state.query}
         />
-        {this.renderSuggestions()}
+        <Suggestions focus={this.state.focus} suggestions={this.props.source} />
       </div>
     );
   }

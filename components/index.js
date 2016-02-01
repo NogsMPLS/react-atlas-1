@@ -29,6 +29,7 @@ export Ripple from './ripple';
 export Slider from './slider';
 export Snackbar from './snackbar';
 export Switch from './switch';
+export Suggestions from './autocomplete';
 export Table from './table/Table';
 export Thead from './table/Thead';
 export Th from './table/Th';

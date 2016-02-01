@@ -41,6 +41,7 @@ class Autocomplete extends React.Component {
     }
   };
 
+{/* if this is not */}
   shouldComponentUpdate (nextProps, nextState) {
     if (!this.state.focus && nextState.focus && this.props.direction === POSITION.AUTO) {
       const direction = this.calculateDirection();
