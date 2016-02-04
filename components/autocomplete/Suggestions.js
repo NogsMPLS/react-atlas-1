@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import style from "./autocomplete.css";
 
 const defaultProps = {
-  source: React.PropTypes.any,
   suggestions: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.object
@@ -25,11 +24,15 @@ class Suggestions extends React.Component {
     /* Apparently the ECMAScript standard to check if object is an Array is to call the object prototype toString method*/
     if(Object.prototype.toString.call(query) === '[object Array]'){
       //dont really need to do anything
-      console.log("QUERYYY: ", query);
-      return query;
+      console.log("Object is an array: ");
+      var a = new Map(query.map((item) => [item, item]));
+      console.log(a);
+      return new Map(query.map((item) => [item, item]));
     }
     else{
-      console.log(new Map(Object.keys(query).map((key) => [key, query[key]])));
+      console.log("Object is an Object");
+      var a = new Map(Object.keys(query).map((key) => [key, query[key]]));
+      console.log(a);
       return new Map(Object.keys(query).map((key) => [key, query[key]]));
     }
   };
@@ -49,13 +52,13 @@ class Suggestions extends React.Component {
     return(
       <ul className={ulClassName} >
         {
-          Object.keys(this.state.suggestions).map((key, value) => {
+          this.state.suggestions.forEach(function(value, key){
             return (
               <li className={liClassName}>
-                {this.state.suggestions[key]}
+                {key + ' = ' + value}
               </li>
             );
-          })
+          }, this.state.suggestions)
         }
       </ul>
     );
