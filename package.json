@@ -20,7 +20,9 @@
     "pages:build": "cross-env NODE_ENV=production rcs \"./packages/react-atlas-core/src/**/*.js\" -s \"./packages/react-atlas-default-theme/src/**/*.js\" -r /react-atlas -v -c ./docsConfig.js",
     "pages:deploy": "gh-pages -d ./styleguide/src -r https://github.com/DigitalRiver/react-atlas.git -b gh-pages",
     "setup": "npm run packages:install && npm run lerna:init && npm run lerna:bootstrap && npm run packages:build",
-    "generateFiles": "node packages/react-atlas/src/setup.js"
+    "generateFiles": "node packages/react-atlas/src/setup.js",
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -52,7 +54,6 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "react-atlas-new-theme": "file:C:/dev/react-atlas/packages/react-atlas-new-theme",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.7.7",
     "babel-core": "^6.7.7",
@@ -97,7 +98,8 @@
     "prettier": "^0.16.0",
     "react-a11y": "^0.3.3",
     "react-addons-test-utils": "^15.0.2",
-    "react-component-styleguide": "0.0.49"
+    "react-component-styleguide": "0.0.49",
+    "react-styleguidist": "^4.6.3"
   },
   "repository": {
     "type": "git",
