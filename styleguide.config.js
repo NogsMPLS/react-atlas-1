@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     title: "React Atlas",
-    components: "packages/react-atlas-core/src/**/!(*.test|index).js",
+    components: "packages/react-atlas-core/src/!(utils)/!(*.test|index|constants).js",
     assetsDir: "docsAssets",
     showCode: true,
     require: [
@@ -13,7 +13,7 @@ module.exports = {
             loaders: [
                 // Babel loader, will use your project’s .babelrc
                 {
-                    test: /\.js?$/,
+                    test: /\.jsx?$/,
                     exclude: /node_modules/,
                     loader: 'babel-loader'
                 },

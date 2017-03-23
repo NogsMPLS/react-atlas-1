@@ -99,7 +99,7 @@
     "react-a11y": "^0.3.3",
     "react-addons-test-utils": "^15.0.2",
     "react-component-styleguide": "0.0.49",
-    "react-styleguidist": "^4.6.3"
+    "react-styleguidist": "5.0.0-rc.1"
   },
   "repository": {
     "type": "git",
